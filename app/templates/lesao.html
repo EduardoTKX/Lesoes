@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesões</title>
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <a class="navbar-brand" href="/">Sistema de Treino</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/usuario/">Usuários</a></li>
+        <li class="nav-item"><a class="nav-link" href="/esporte/">Esportes</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categoriaesportiva/">Categorias Esportivas</a></li>
+        <li class="nav-item"><a class="nav-link" href="/exercicio/">Exercícios</a></li>
+        <li class="nav-item"><a class="nav-link" href="/treino/">Treinos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/treinodiario/">Treinos Diários</a></li>
+        <li class="nav-item"><a class="nav-link" href="/feedbackusuario/">Feedbacks</a></li>
+        <li class="nav-item"><a class="nav-link" href="/registrofisico/">Registros Físicos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Lista de Lesões</h2>
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Usuário</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Data da Ocorrência</th>
+          <th scope="col">Esporte</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lesao in lesoes %}
+        <tr>
+          <td>{{ lesao.usuario.nome }}</td>
+          <td>{{ lesao.descricao }}</td>
+          <td>{{ lesao.data_ocorrencia|date:"d/m/Y" }}</td>
+          <td>{% if lesao.esporte %}
+            {{lesao.esporte.nome}}
+          {% else %}
+            -
+          {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="text-center">Nenhuma lesão cadastrada.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
