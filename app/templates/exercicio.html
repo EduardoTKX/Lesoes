@@ -1,74 +1,343 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Exercícios</title>
-  <!-- Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Exercícios - Sistema de Lesões Esportivas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --background: 0 0% 3.9%;
+            --foreground: 0 0% 98%;
+            --card: 0 0% 3.9%;
+            --card-foreground: 0 0% 98%;
+            --popover: 0 0% 3.9%;
+            --popover-foreground: 0 0% 98%;
+            --primary: 0 0% 98%;
+            --primary-foreground: 0 0% 9%;
+            --secondary: 0 0% 14.9%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 0 0% 14.9%;
+            --muted-foreground: 0 0% 63.9%;
+            --accent: 0 0% 14.9%;
+            --accent-foreground: 0 0% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 0 0% 14.9%;
+            --input: 0 0% 14.9%;
+            --ring: 0 0% 83.1%;
+        }
+        
+        .bg-background { background-color: hsl(var(--background)); }
+        .text-foreground { color: hsl(var(--foreground)); }
+        .bg-card { background-color: hsl(var(--card)); }
+        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+        .border-border { border-color: hsl(var(--border)); }
+        .border-primary { border-color: hsl(var(--primary)); }
+    </style>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <a class="navbar-brand" href="/">Sistema de Treino</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body class="min-h-screen bg-background">
+    <header class="border-b border-border bg-card/30 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-accent transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        Voltar
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-md bg-green-500/20 border border-green-500/30">
+                            <i data-lucide="dumbbell" class="w-4 h-4 text-green-400"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-lg font-semibold text-foreground">Gerenciar Exercícios</h1>
+                            <p class="text-xs text-muted-foreground">Catálogo de exercícios terapêuticos</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+                    <i data-lucide="plus" class="w-3 h-3"></i>
+                    Novo Exercício
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/usuario/">Usuários</a></li>
-        <li class="nav-item"><a class="nav-link" href="/esporte/">Esportes</a></li>
-        <li class="nav-item"><a class="nav-link" href="/categoriaesportiva/">Categorias Esportivas</a></li>
-        <li class="nav-item"><a class="nav-link" href="/lesao/">Lesões</a></li>
-        <li class="nav-item"><a class="nav-link" href="/treino/">Treinos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/treinodiario/">Treinos Diários</a></li>
-        <li class="nav-item"><a class="nav-link" href="/feedbackusuario/">Feedbacks</a></li>
-        <li class="nav-item"><a class="nav-link" href="/registrofisico/">Registros Físicos</a></li>
-      </ul>
-    </div>
-  </nav>
+    <main class="container mx-auto px-6 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-blue-500/10 border border-blue-500/20">
+                        <i data-lucide="dumbbell" class="w-4 h-4 text-blue-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">124</p>
+                        <p class="text-xs text-muted-foreground">Total Exercícios</p>
+                    </div>
+                </div>
+            </div>
 
-  <div class="container mt-5">
-    <h2 class="mb-4">Lista de Exercícios</h2>
-    <table class="table table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Descrição</th>
-          <th scope="col">Esporte</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for exercicio in exercicios %}
-        <tr>
-          <td>{{ exercicio.nome }}</td>
-          <td>{{ exercicio.descricao }}</td>
-          <td>{{ exercicio.esporte.nome }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="3" class="text-center">Nenhum exercício cadastrado.</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-green-500/10 border border-green-500/20">
+                        <i data-lucide="target" class="w-4 h-4 text-green-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">8</p>
+                        <p class="text-xs text-muted-foreground">Categorias</p>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-purple-500/10 border border-purple-500/20">
+                        <i data-lucide="users" class="w-4 h-4 text-purple-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">89</p>
+                        <p class="text-xs text-muted-foreground">Em Uso</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-orange-500/10 border border-orange-500/20">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4 text-orange-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">95%</p>
+                        <p class="text-xs text-muted-foreground">Eficácia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="mb-8">
+            <h3 class="text-lg font-semibold text-foreground mb-4">Categorias de Exercícios</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 cursor-pointer rounded-lg p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-foreground text-sm">Fortalecimento</p>
+                            <p class="text-xs text-muted-foreground">45 exercícios</p>
+                        </div>
+                        <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded">45</span>
+                    </div>
+                </div>
+
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 cursor-pointer rounded-lg p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-foreground text-sm">Alongamento</p>
+                            <p class="text-xs text-muted-foreground">32 exercícios</p>
+                        </div>
+                        <span class="text-xs bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-1 rounded">32</span>
+                    </div>
+                </div>
+
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 cursor-pointer rounded-lg p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-foreground text-sm">Mobilidade</p>
+                            <p class="text-xs text-muted-foreground">28 exercícios</p>
+                        </div>
+                        <span class="text-xs bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-1 rounded">28</span>
+                    </div>
+                </div>
+
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 cursor-pointer rounded-lg p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-foreground text-sm">Cardio</p>
+                            <p class="text-xs text-muted-foreground">19 exercícios</p>
+                        </div>
+                        <span class="text-xs bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-1 rounded">19</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+            <div class="relative flex-1">
+                <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                <input type="text" placeholder="Buscar exercícios..." class="w-full pl-10 pr-3 py-2 bg-card/50 border border-border/50 rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+            </div>
+            <button class="inline-flex items-center gap-2 px-3 py-2 bg-transparent border border-border/50 text-foreground rounded-md hover:bg-accent transition-colors">
+                <i data-lucide="filter" class="w-4 h-4"></i>
+                Filtros
+            </button>
+        </div>
+
+        <!-- Exercise List -->
+        <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-foreground">Lista de Exercícios</h3>
+            
+            <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 rounded-lg">
+                <div class="p-6 pb-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h4 class="text-base font-semibold text-foreground">Agachamento com Peso Corporal</h4>
+                                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded">Iniciante</span>
+                            </div>
+                            <p class="text-xs text-muted-foreground mb-3">Exercício fundamental para fortalecimento dos músculos das pernas</p>
+                            <div class="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="target" class="w-3 h-3"></i>
+                                    Pernas
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    3 séries x 15 rep
+                                </div>
+                                <span class="bg-secondary text-secondary-foreground px-2 py-1 rounded text-xs">Fortalecimento</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="play" class="w-3 h-3"></i>
+                                Demonstrar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="edit" class="w-3 h-3"></i>
+                                Editar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-red-400 hover:text-red-300 hover:bg-accent rounded transition-colors">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 rounded-lg">
+                <div class="p-6 pb-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h4 class="text-base font-semibold text-foreground">Alongamento de Isquiotibiais</h4>
+                                <span class="text-xs bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-1 rounded">Fácil</span>
+                            </div>
+                            <p class="text-xs text-muted-foreground mb-3">Alongamento para flexibilidade dos músculos posteriores da coxa</p>
+                            <div class="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="target" class="w-3 h-3"></i>
+                                    Posterior da coxa
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    30 segundos
+                                </div>
+                                <span class="bg-secondary text-secondary-foreground px-2 py-1 rounded text-xs">Alongamento</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="play" class="w-3 h-3"></i>
+                                Demonstrar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="edit" class="w-3 h-3"></i>
+                                Editar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-red-400 hover:text-red-300 hover:bg-accent rounded transition-colors">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 rounded-lg">
+                <div class="p-6 pb-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h4 class="text-base font-semibold text-foreground">Mobilidade de Ombro</h4>
+                                <span class="text-xs bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 px-2 py-1 rounded">Intermediário</span>
+                            </div>
+                            <p class="text-xs text-muted-foreground mb-3">Exercício para melhorar amplitude de movimento dos ombros</p>
+                            <div class="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="target" class="w-3 h-3"></i>
+                                    Ombros
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    10 repetições
+                                </div>
+                                <span class="bg-secondary text-secondary-foreground px-2 py-1 rounded text-xs">Mobilidade</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="play" class="w-3 h-3"></i>
+                                Demonstrar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="edit" class="w-3 h-3"></i>
+                                Editar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-red-400 hover:text-red-300 hover:bg-accent rounded transition-colors">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 rounded-lg">
+                <div class="p-6 pb-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h4 class="text-base font-semibold text-foreground">Caminhada Rápida</h4>
+                                <span class="text-xs bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-1 rounded">Fácil</span>
+                            </div>
+                            <p class="text-xs text-muted-foreground mb-3">Exercício cardiovascular de baixo impacto</p>
+                            <div class="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="target" class="w-3 h-3"></i>
+                                    Sistema cardiovascular
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    20 minutos
+                                </div>
+                                <span class="bg-secondary text-secondary-foreground px-2 py-1 rounded text-xs">Cardio</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="play" class="w-3 h-3"></i>
+                                Demonstrar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-foreground hover:bg-accent rounded transition-colors">
+                                <i data-lucide="edit" class="w-3 h-3"></i>
+                                Editar
+                            </button>
+                            <button class="inline-flex items-center gap-1 px-2 py-1 text-xs h-7 text-red-400 hover:text-red-300 hover:bg-accent rounded transition-colors">
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

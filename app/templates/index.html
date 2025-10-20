@@ -1,90 +1,331 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Inicial</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #f0f2f5;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .navbar {
-      background-color: #212529;
-    }
-    .navbar-brand {
-      font-weight: bold;
-    }
-    .jumbotron {
-      background: linear-gradient(135deg, #343a40, #495057);
-      color: #fff;
-      border-radius: 20px;
-      padding: 60px 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    .btn-custom {
-      margin: 10px;
-      width: 250px;
-      font-size: 1rem;
-      font-weight: 500;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: 0.2s;
-    }
-    .btn-custom:hover {
-      background-color: #0d6efd;
-      color: white;
-      transform: scale(1.03);
-    }
-    footer {
-      background-color: #212529;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 60px;
-      border-top: 3px solid #0d6efd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportsMed - Sistema de Lesões Esportivas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --primary: 217.2 91.2% 59.8%;
+            --primary-foreground: 222.2 84% 4.9%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 224.3 76.3% 94.1%;
+            --radius: 0.5rem;
+        }
+        
+        .bg-background { background-color: hsl(var(--background)); }
+        .text-foreground { color: hsl(var(--foreground)); }
+        .bg-card { background-color: hsl(var(--card)); }
+        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+        .border-border { border-color: hsl(var(--border)); }
+        .text-primary { color: hsl(var(--primary)); }
+        .bg-primary { background-color: hsl(var(--primary)); }
+        .hover\:text-primary:hover { color: hsl(var(--primary)); }
+        .hover\:border-primary\/30:hover { border-color: hsl(var(--primary) / 0.3); }
+    </style>
 </head>
-<body>
+<body class="min-h-screen bg-background">
+    <header class="border-b border-border bg-card/30 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-md bg-primary/20 border border-primary/30">
+                        <i data-lucide="activity" class="w-4 h-4 text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-semibold text-foreground">SportsMed</h1>
+                        <p class="text-xs text-muted-foreground">Lesões Esportivas</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-secondary text-secondary-foreground">
+                        <i data-lucide="shield" class="w-3 h-3"></i>
+                        Seguro
+                    </span>
+                    <button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">
+                        <i data-lucide="log-in" class="w-3 h-3"></i>
+                        Acessar Sistema
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand" href="/"><i class="bi bi-bar-chart-line-fill"></i> Sistema de Treino</a>
-  </div>
-</nav>
+    <main class="container mx-auto px-6 py-8">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-foreground mb-3">
+                Sistema de
+                <span class="text-primary"> Lesões Esportivas</span>
+            </h2>
+            <p class="text-base text-muted-foreground max-w-xl mx-auto">
+                Plataforma completa para gerenciamento de atletas, lesões e tratamentos.
+            </p>
+        </div>
 
-<!-- Conteúdo Principal -->
-<div class="container mt-5">
-  <div class="jumbotron text-center">
-    <h1 class="display-5 fw-bold">Bem-vindo!</h1>
-    <p class="lead">Selecione uma das opções abaixo:</p>
-    <hr class="my-4" style="border-color: #00bfff;">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-blue-500/10 border border-blue-500/20">
+                        <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">1,247</p>
+                        <p class="text-xs text-muted-foreground">Atletas</p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="d-flex flex-wrap justify-content-center">
-      <a href="/usuario/" class="btn btn-outline-primary btn-custom"><i class="bi bi-person-circle me-2"></i>Usuários</a>
-      <a href="/esporte/" class="btn btn-outline-primary btn-custom"><i class="bi bi-trophy me-2"></i>Esportes</a>
-      <a href="/categoriaesportiva/" class="btn btn-outline-primary btn-custom"><i class="bi bi-diagram-3 me-2"></i>Categorias Esportivas</a>
-      <a href="/exercicio/" class="btn btn-outline-primary btn-custom"><i class="bi bi-play-btn me-2"></i>Exercícios</a>
-      <a href="/lesao/" class="btn btn-outline-primary btn-custom"><i class="bi bi-bandaid me-2"></i>Lesões</a>
-      <a href="/treino/" class="btn btn-outline-primary btn-custom"><i class="bi bi-clipboard-check me-2"></i>Treinos</a>
-      <a href="/treinodiario/" class="btn btn-outline-primary btn-custom"><i class="bi bi-calendar2-week me-2"></i>Treinos Diários</a>
-      <a href="/feedbackusuario/" class="btn btn-outline-primary btn-custom"><i class="bi bi-chat-dots me-2"></i>Feedbacks</a>
-      <a href="/registrofisico/" class="btn btn-outline-primary btn-custom"><i class="bi bi-body-text me-2"></i>Registros Físicos</a>
-    </div>
-  </div>
-</div>
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-green-500/10 border border-green-500/20">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4 text-green-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">89%</p>
+                        <p class="text-xs text-muted-foreground">Recuperação</p>
+                    </div>
+                </div>
+            </div>
 
-<!-- Rodapé -->
-<footer>
-  <div class="container">
-    <p class="mb-0">© 2025 Sistema de Treino </p>
-  </div>
-</footer>
+            <div class="bg-card/50 border border-border/50 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-purple-500/10 border border-purple-500/20">
+                        <i data-lucide="activity" class="w-4 h-4 text-purple-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-xl font-bold text-foreground">342</p>
+                        <p class="text-xs text-muted-foreground">Casos Ativos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold text-foreground mb-6">Módulos do Sistema</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Usuário -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-blue-500/10 text-blue-400 border-blue-500/20">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Usuário</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Gerenciar perfis de usuários do sistema</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Exercício -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-green-500/10 text-green-400 border-green-500/20">
+                                <i data-lucide="dumbbell" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Exercício</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Catálogo de exercícios terapêuticos</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            <a href="exercicio/">Acessar →</a>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Esportes -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-yellow-500/10 text-yellow-400 border-yellow-500/20">
+                                <i data-lucide="trophy" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Esportes</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Modalidades esportivas disponíveis</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesões -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-red-500/10 text-red-400 border-red-500/20">
+                                <i data-lucide="heart" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Lesões</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Registro e acompanhamento de lesões</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Treinos -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-purple-500/10 text-purple-400 border-purple-500/20">
+                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Treinos</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Programas de treinamento</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Treinos Diários -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-indigo-500/10 text-indigo-400 border-indigo-500/20">
+                                <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Treinos Diários</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Acompanhamento diário de atividades</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categorias Esportivas -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-cyan-500/10 text-cyan-400 border-cyan-500/20">
+                                <i data-lucide="tag" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Categorias Esportivas</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Organização por categorias</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feedback Usuario -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-orange-500/10 text-orange-400 border-orange-500/20">
+                                <i data-lucide="message-square" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Feedback Usuario</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Feedback dos usuários</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Registros Físicos -->
+                <div class="bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-200 group cursor-pointer hover:bg-card/80 rounded-lg">
+                    <div class="p-4 pb-2">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-1.5 rounded-md border bg-pink-500/10 text-pink-400 border-pink-500/20">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                            </div>
+                            <h4 class="text-base text-foreground group-hover:text-primary transition-colors font-semibold">Registros Físicos</h4>
+                        </div>
+                        <p class="text-muted-foreground text-xs leading-relaxed mb-3">Histórico de avaliações físicas</p>
+                        <button class="w-full justify-start text-xs text-muted-foreground hover:text-primary h-7 text-left">
+                            Acessar →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acessar o Sistema -->
+        <div class="bg-card/50 border border-border/50 mb-6 rounded-lg">
+            <div class="p-4 pb-2">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-md bg-primary/10 border border-primary/20">
+                        <i data-lucide="database" class="w-4 h-4 text-primary"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-foreground text-base font-semibold">Acessar o Sistema</h4>
+                        <p class="text-muted-foreground text-xs">Portal principal de acesso ao sistema</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 pt-0">
+                <button class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90">
+                    <i data-lucide="log-in" class="w-3 h-3"></i>
+                    Fazer Login
+                </button>
+            </div>
+        </div>
+
+        <!-- Acesso Rápido -->
+        <div class="bg-card/50 border border-border/50 rounded-lg">
+            <div class="p-4 pb-2">
+                <h4 class="text-foreground text-base font-semibold">Acesso Rápido</h4>
+                <p class="text-muted-foreground text-xs">Ações frequentes</p>
+            </div>
+            <div class="p-4 pt-0">
+                <div class="flex flex-wrap gap-2">
+                    <button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground h-7">
+                        <i data-lucide="users" class="w-3 h-3"></i>
+                        Novo Atleta
+                    </button>
+                    <button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground h-7">
+                        <i data-lucide="heart" class="w-3 h-3"></i>
+                        Registrar Lesão
+                    </button>
+                    <button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground h-7">
+                        <i data-lucide="calendar" class="w-3 h-3"></i>
+                        Agendar
+                    </button>
+                    <button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground h-7">
+                        <i data-lucide="file-text" class="w-3 h-3"></i>
+                        Relatório
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-border/50 bg-card/20 mt-12">
+        <div class="container mx-auto px-6 py-6">
+            <div class="text-center text-muted-foreground">
+                <p class="text-xs">© 2024 SportsMed - Sistema de Lesões Esportivas</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
