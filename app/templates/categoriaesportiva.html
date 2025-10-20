@@ -1,72 +1,537 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Categorias Esportivas</title>
-  <!-- Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias Esportivas - SportsMed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0a0a0a',
+                        foreground: '#ededed',
+                        card: '#141414',
+                        'card-foreground': '#ededed',
+                        primary: '#3b82f6',
+                        'primary-foreground': '#ffffff',
+                        muted: '#262626',
+                        'muted-foreground': '#a3a3a3',
+                        border: '#262626',
+                        destructive: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <a class="navbar-brand" href="/">Sistema de Treino</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body class="bg-background text-foreground">
+    <header class="border-b border-border bg-card/30 backdrop-blur-sm sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <a href="{% url 'index' %}">
+                        <button class="flex items-center gap-2 px-4 py-2 rounded-md border border-border bg-transparent hover:bg-muted transition-colors text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m12 19-7-7 7-7"/>
+                                <path d="M19 12H5"/>
+                            </svg>
+                            Voltar
+                        </button>
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                <path d="M2 12h20"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-semibold text-foreground">Categorias Esportivas</h1>
+                            <p class="text-sm text-muted-foreground">Gestão de modalidades e atletas</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"/>
+                        <path d="M12 5v14"/>
+                    </svg>
+                    Nova Categoria
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/usuario/">Usuários</a></li>
-        <li class="nav-item"><a class="nav-link" href="/esporte/">Esportes</a></li>
-        <li class="nav-item"><a class="nav-link" href="/exercicio/">Exercícios</a></li>
-        <li class="nav-item"><a class="nav-link" href="/lesao/">Lesões</a></li>
-        <li class="nav-item"><a class="nav-link" href="/treino/">Treinos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/treinodiario/">Treinos Diários</a></li>
-        <li class="nav-item"><a class="nav-link" href="/feedbackusuario/">Feedbacks</a></li>
-        <li class="nav-item"><a class="nav-link" href="/registrofisico/">Registros Físicos</a></li>
-      </ul>
-    </div>
-  </nav>
+    <main class="container mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-card/50 border border-border/50 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-muted-foreground mb-1">Total de Categorias</p>
+                        <p class="text-3xl font-bold text-foreground">12</p>
+                    </div>
+                    <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-  <div class="container mt-5">
-    <h2 class="mb-4">Lista de Categorias Esportivas</h2>
-    <table class="table table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Faixa Etária</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for categoria in categorias %}
-        <tr>
-          <td>{{ categoria.nome }}</td>
-          <td>{{ categoria.faixa_etaria }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="2" class="text-center">Nenhuma categoria esportiva cadastrada.</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+            <div class="bg-card/50 border border-border/50 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-muted-foreground mb-1">Atletas Ativos</p>
+                        <p class="text-3xl font-bold text-foreground">247</p>
+                    </div>
+                    <div class="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <div class="bg-card/50 border border-border/50 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-muted-foreground mb-1">Treinos Mensais</p>
+                        <p class="text-3xl font-bold text-foreground">1.8K</p>
+                    </div>
+                    <div class="p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400">
+                            <path d="m14.5 2-4 4.5L7 3 2 8l3 3.5L.5 16 8 23l4.5-5.5L16 21l5-5-3-3.5L22.5 8 15 1l-4.5 5.5L7 3"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-card/50 border border-border/50 rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-muted-foreground mb-1">Taxa de Adesão</p>
+                        <p class="text-3xl font-bold text-foreground">92%</p>
+                    </div>
+                    <div class="p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-card/50 border border-border/50 rounded-lg mb-8">
+            <div class="p-6 border-b border-border">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-semibold text-foreground">Todas as Categorias</h2>
+                        <p class="text-sm text-muted-foreground">Modalidades esportivas cadastradas</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.3-4.3"/>
+                            </svg>
+                            <input type="text" placeholder="Buscar categorias..." class="pl-9 pr-4 py-2 w-64 bg-background border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <button class="p-2 border border-border rounded-md hover:bg-muted transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Futebol -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                    <path d="M2 12h20"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Futebol</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade coletiva de campo</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">45</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">320</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">88%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Basquete -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-orange-500/10 border border-orange-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                    <path d="M2 12h20"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Basquete</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade coletiva de quadra</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">32</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">256</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">91%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Vôlei -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                    <path d="M2 12h20"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Vôlei</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade coletiva de rede</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">28</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">224</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">94%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Atletismo -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400">
+                                    <path d="M10.1 2.18a9.93 9.93 0 0 1 3.8 0"/>
+                                    <path d="M17.6 3.71a9.95 9.95 0 0 1 2.69 2.7"/>
+                                    <path d="M21.82 10.1a9.93 9.93 0 0 1 0 3.8"/>
+                                    <path d="M20.29 17.6a9.95 9.95 0 0 1-2.7 2.69"/>
+                                    <path d="M13.9 21.82a9.94 9.94 0 0 1-3.8 0"/>
+                                    <path d="M6.4 20.29a9.95 9.95 0 0 1-2.69-2.7"/>
+                                    <path d="M2.18 13.9a9.93 9.93 0 0 1 0-3.8"/>
+                                    <path d="M3.71 6.4a9.95 9.95 0 0 1 2.7-2.69"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Atletismo</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade individual de pista</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">38</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">304</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">96%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Natação -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400">
+                                    <path d="M2 12h20"/>
+                                    <path d="M2 18h20"/>
+                                    <path d="M2 6h20"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Natação</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade aquática individual</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">24</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">192</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">89%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Judô -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400">
+                                    <path d="M18 20a6 6 0 0 0-12 0"/>
+                                    <circle cx="12" cy="10" r="4"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Judô</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Arte marcial japonesa</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">19</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">152</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">93%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tênis -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                    <path d="M2 12h20"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">Pausado</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Tênis</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade de raquete individual</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">15</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">120</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">85%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ciclismo -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-teal-500/10 border border-teal-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-teal-400">
+                                    <circle cx="18.5" cy="17.5" r="3.5"/>
+                                    <circle cx="5.5" cy="17.5" r="3.5"/>
+                                    <circle cx="15" cy="5" r="1"/>
+                                    <path d="M12 17.5V14l-3-3 4-3 2 3h2"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Ciclismo</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade de resistência</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">21</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">168</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">90%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ginástica -->
+                    <div class="bg-background/50 border border-border/50 rounded-lg p-5 hover:border-primary/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 rounded-lg bg-pink-500/10 border border-pink-500/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-400">
+                                    <path d="M18 20a6 6 0 0 0-12 0"/>
+                                    <circle cx="12" cy="10" r="4"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </svg>
+                            </div>
+                            <span class="px-2 py-1 text-xs rounded-md bg-green-500/10 text-green-400 border border-green-500/20">Ativo</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-foreground mb-2">Ginástica</h3>
+                        <p class="text-sm text-muted-foreground mb-4">Modalidade artística e rítmica</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Atletas</span>
+                                <span class="font-semibold text-foreground">17</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Treinos/Mês</span>
+                                <span class="font-semibold text-foreground">136</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-muted-foreground">Frequência</span>
+                                <span class="font-semibold text-foreground">92%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex-1 px-3 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Ver Detalhes
+                            </button>
+                            <button class="p-2 rounded-md border border-border hover:bg-muted transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

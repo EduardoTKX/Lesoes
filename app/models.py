@@ -1,21 +1,23 @@
 from django.db import models
 
-class Usuario(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    data_nascimento = models.DateField()
-    cpf = models.CharField(max_length=11, unique=True)
-
-    def __str__(self):
-        return self.nome
-
-
 class Esporte(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True)
 
     def __str__(self):
         return self.nome
+
+class Usuario(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    data_nascimento = models.DateField()
+    esporte = models.ForeignKey(Esporte, on_delete=models.CASCADE)
+    tel = models.CharField(max_length=11, unique=True)
+
+    def __str__(self):
+        return self.nome
+
+
 
 
 class CategoriaEsportiva(models.Model):
@@ -79,7 +81,7 @@ class RegistroFisico(models.Model):
     data_registro = models.DateField()
     peso = models.FloatField(help_text="Peso em kg")
     altura = models.FloatField(help_text="Altura em metros")
-    imc = models.FloatField(blank=True, null=True)
+   
 
     def save(self, *args, **kwargs):
         if self.altura > 0:
